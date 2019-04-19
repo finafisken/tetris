@@ -56,8 +56,8 @@ const drawShape = shape => (canvasContext, posX, posY, orientation) => {
         canvasContext.fillRect(
           posX + tileSize * rowIdx,
           posY + tileSize * colIdx,
-          tileSize,
-          tileSize
+          -tileSize,
+          -tileSize
         );
       }
     });
