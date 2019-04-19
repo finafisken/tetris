@@ -1,5 +1,5 @@
 import config from "./config";
-import drawShape from "./draw/shape";
+import { drawT, drawO, drawS } from "./draw/shapes";
 
 const canvas = <HTMLCanvasElement>document.getElementById("game-canvas");
 const { tileSize } = config;
@@ -7,14 +7,15 @@ canvas.width = 10 * tileSize;
 canvas.height = 20 * tileSize;
 
 const cx = canvas.getContext("2d");
-
+let pos = 0;
+let gameOver = true;
 const drawFrame = () => {
   // clear previous frame
   cx.clearRect(0, 0, canvas.width, canvas.height);
-
-  drawShape(cx, 150, 150, "lul");
-  // cx.fillStyle = "salmon";
-  // cx.fillRect(0, 0, tileSize, tileSize); // negative coords so we can calc pos easier
-  // cx.fillRect(tileSize, 0, tileSize, tileSize); // negative coords so we can calc pos easier
+  pos += 1;
+  drawT(cx, 150, pos, 0);
+  if (!gameOver) {
+    window.requestAnimationFrame(drawFrame);
+  }
 };
-drawFrame();
+window.requestAnimationFrame(drawFrame);
