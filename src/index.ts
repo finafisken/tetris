@@ -1,8 +1,12 @@
 import config from "./config";
 import { drawT, drawO, drawS } from "./draw/shapes";
+import Game from "./Game";
+import Shape from "./Shape";
 
-const canvas = <HTMLCanvasElement>document.getElementById("game-canvas");
 const { tileSize } = config;
+const currentGame = new Game(10, 20);
+const canvas = <HTMLCanvasElement>document.getElementById("game-canvas");
+
 canvas.width = 10 * tileSize;
 canvas.height = 20 * tileSize;
 
@@ -10,7 +14,10 @@ const cx = canvas.getContext("2d");
 let pos = 0;
 let gameOver = true;
 
-const tileBoard = new Array(20).fill(new Array(10).fill(0));
+const shape = new Shape();
+
+console.log(currentGame.tileBoard);
+console.log(shape.spawnOnBoard(currentGame.tileBoard));
 
 const drawFrame = () => {
   // clear previous frame
@@ -21,10 +28,8 @@ const drawFrame = () => {
   cx.fillRect(0, 0, canvas.width, canvas.height);
 
   // move
-  console.log(canvas.height);
-  console.log(pos);
   pos = pos >= canvas.height ? canvas.height : pos + tileSize;
-  drawS(cx, 5 * tileSize, pos, 0);
+  drawS(cx, 4 * tileSize, pos, 0);
 
   // repeat
   if (!gameOver) {
