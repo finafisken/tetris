@@ -38,13 +38,24 @@ const shapes = {
 };
 
 const rotate = {
-  0: tiles => tiles,
-  90: tiles => tiles[0].map((col, i) => tiles.map(row => row[i])),
-  180: tiles => [tiles[3], tiles[2], tiles[1], tiles[0]],
-  270: tiles => rotate[90](rotate[180](tiles))
+  0: (tiles: Array<Array<number>>) => tiles,
+  90: (tiles: Array<Array<number>>) =>
+    tiles[0].map((col, i) => tiles.map(row => row[i])),
+  180: (tiles: Array<Array<number>>) => [
+    tiles[3],
+    tiles[2],
+    tiles[1],
+    tiles[0]
+  ],
+  270: (tiles: Array<Array<number>>) => rotate[90](rotate[180](tiles))
 };
 
-const drawShape = shape => (canvasContext, posX, posY, orientation) => {
+const drawShape = (shape: string) => (
+  canvasContext: CanvasRenderingContext2D,
+  posX: number,
+  posY: number,
+  orientation: number
+) => {
   const { color, tiles } = shapes[shape];
   const rotatedTiles = rotate[orientation](tiles);
 

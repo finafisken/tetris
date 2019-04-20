@@ -9,9 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "draw": "0.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
     "typescript": "^3.4.4"
